@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+    <!-- Webpage Title -->
+    <title>Hello, world!</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+
+    <!-- style -->
+    <style type="text/css">
+        * {
+            font-family: 'Stylish', sans-serif;
+        }
+
+        .wrap {
+            width: 900px;
+            margin: auto;
+        }
+
+        .comment {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .form-post {
+            max-width: 500px;
+            padding: 2rem;
+            margin: 2rem auto;
+            border-color: #e9ecef;
+            border-radius: 0.3rem;
+            border: solid;
+            display: block;
+        }
+    </style>
+
+    <!-- javascript 영역 -->
+    <script>
+        // function hey(){
+        //     alert('안녕!');
+        // }
+
+        // let num=20;
+        // console.log("num")
+        // // num은 앞으로 20임. 콘솔로그 찍었을 때, 값이 20임
+
+        // // 변수 선언 방법에는 3가지가 있음
+        //     const num=20;
+        //     // num=30
+        //     // num=num-10; 등으로 수정하고 싶을때도,, const의 값은 20으로 fix 되어있음. 주로 키값 부여 시에 사용. 위변조 방지
+        //     let num=20;
+        //     // let 선언방식의 ("closure:클로저") 찾아보기
+        //     // 따옴표가 있으면 문자, 없으면 숫자임. 밑에서 num='김건희'라고 선언할 경우 오류가 남. 처음에 숫자를 넣었을 경우 계속 숫자를 넣어야 함. 값이 동일한 성격이어야 한다. 요즘에는 변수선언 시 주로 let을 사용함.
+        //     var num=20;
+        //     // 값의 재할당 및 속성 변경이 가능함. 위험성이 많아서 잘 사용하지 않음. var num= '이십'
+
+        // ''(undefine)과 ' '(space)은 다른 값임. 공백을 인식함.
+        // 문자+숫자 = 문자
+
+        // 변수에 값을 여러개 넣으려면? list(리스트)    [] -> 자바스크립트에서는 배열, array 이라고 부름
+        // 리스트에는 숫자형과 문자형 모두 넣을 수 있음
+        // 첫번째값은 0번째임
+        //     let a = [1,2,3,4,5,6,7,8,9,10];
+        //     let b = [1,2,3,"이미령",5]
+        //     // 첫번째 값을 빼내는 함수
+        //     // 마지막 값을 빼내는 함수
+        //     // console.log(a[0])
+        //     // b_list[3]
+        //     // a라는 리스트에서 0번째의 값을 꺼내라
+            
+        //     // list에 요소 넣기. 맨 뒤에 '헤이'라는 요소가 추가됨
+        //     b.push("헤이")
+        //     b
+        //     // 맨 뒤의 값을 빼는 함수. pop 
+        //     b.pop("헤이")
+        //     // `로 선언....
+
+        //     // 딕셔너리. 키와 값의 쌍으로 이루어진 자료형. 여러개의 키:값 을 선언 {}. 복수의 키:값은 쉼표(,)로 연결함
+        //     // 키: 값, 
+        // let b_dict={
+        //     'name':'bob',
+        //     'age':21
+        // }
+
+        // b_dict['name'] // 키를 부르면, 값인 bob이 출력됨
+        // // 추가하고 싶을때는 b_dict['height']=180 으로 추가적으로 더해줄 수 있음
+
+
+        // // 불린형. 소문자만 사용
+        // let is_working = true; //바로 true라고 선언...
+        // let score_updated = false;
+
+        // let is_true = 90 > 50; //부등호를 통해서 true라는 결과값을 선언.. if문 사용시 활용
+        // let is_false = 90 < 50;
+
+        // let score = 30;
+
+        // let is_same = score == 30 // 같다 ( == )      스코어는 30이다. 가 위에서 선언한 score 값과 맞으면 true, 틀리면 false... 미선언시 undefine 오류 발생. 비교대상이 같은 자료형이어야 함.  
+        // let is_same = score != 40 // 다르다 ( != )
+
+
+        function x(a,b,c){
+            console.log(a+b)
+            console.log(c)
+            return a+b
+
+        }
+
+        y-f(x)
+        let y =f(a,b,c)
+
+
+        function x(num){
+                if(num>50){
+
+                }else if(num==20){
+
+                }
+                
+                else{
+
+                }
+        }
+
+
+// 반복문. 인자 3개(시작점, 끝나는지점, 끝나는지점까지 값이 변화되는 거). i는 0이다. / i를 언제까지 값을 증가시킬거냐, /i에 1씩 더해라.
+// i=0 --> i=0+1 --> i=1인데 100보다 작나? 참 --> 1을 찍음 .... 삼각형 모양.. 
+        for (let i = 0; i < 100; i++) {
+	        console.log(i)
+            if(i==50){
+                break; //i가 50일때 빠져나옴. 중간에 빠져나올 수 있음.
+            }
+        }
+
+        let people = ['철수','영희','민수','형준','기남','동희']
+            console.log(people.length)
+         // 이렇게 하면 리스트의 모든 원소를 한번에 출력할 수 있겠죠?
+         // i가 1씩 증가하면서, people의 원소를 차례대로 불러올 수 있게 됩니다.
+            for (let i = 0 ; i < people.length ; i++) {
+            	console.log(people[i])
+             }
+
+            //length는 리스트에 몇개가 있는지 불러오는 함수. i가 리스트의 개수만큼 될때까지 돌려라.
+
+            //맨 뒤의 동희부터 출력. 조건은 0까지만. 
+            for (let i = people.length-1; i>=0;1--){
+                coonsole.log(people[i])
+            }
+
+
+
+    </script>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="jumbotron">
+            <h1 class="display-4">나홀로 링크 메모장!</h1>
+            <p class="lead">중요한 링크를 저장해두고, 나중에 볼 수 있는 공간입니다</p>
+            <hr class="my-4">
+            <p class="lead">
+                <a class="btn btn-primary btn-lg" href="#" role="button">포스팅박스 열기</a>
+            </p>
+        </div>
+        <div class="form-post" id="post-box">
+            <div>
+                <div class="form-group">
+                    <label for="exampleFormControlInput1">아티클 URL</label>
+                    <input class="form-control" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1">간단 코멘트</label>
+                    <textarea class="form-control" rows="2"></textarea>
+                </div>
+                <button type="button" class="btn btn-primary" onclick="x(1,2,'이미령')">기사저장</button>
+            </div>
+        </div>
+        <div class="card-columns" id="cards-box">
+            <div class="card">
+                <img class="card-img-top"
+                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top"
+                    src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg"
+                    alt="Card image cap">
+                <div class="card-body">
+                    <a href="#" class="card-title">여기 기사 제목이 들어가죠</a>
+                    <p class="card-text">기사의 요약 내용이 들어갑니다. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라만세 무궁화 삼천리 화려강산...</p>
+                    <p class="card-text comment">여기에 코멘트가 들어갑니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

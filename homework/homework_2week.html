@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Homework 2week</title>
+
+
+    <!-- 구글 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <!-- 부트스트랩 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <!-- 스타일 CSS -->
+    <style>
+
+        /* 구글 웹 폰트 */
+        *{
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+
+        /* .wrap{
+            width: 900px;
+            margin: auto;
+            border: solid;
+            padding: 3rem;
+        } */
+        
+        .img-product{
+            display:block;
+            width: 100%;
+            height:auto;
+            border: solid;
+
+        }
+    
+        .title{
+            font-size: 30px;
+            font-weight: bold;
+            color:blueviolet;
+        }
+
+        .sub-title{
+          font-size: 20px;
+          font-weight:bold;
+
+        }
+
+        .mybtn {
+          margin: auto;
+        }
+
+        /* 부트스트랩 버튼에 클래스명 지정하고, 중앙정렬 */
+        .button1 {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content : center;
+        }
+
+        /* 부트스트랩 버튼에 display block 설정하고, 클래스명 지정 후, 넓이 설정 */
+        .mybtn{
+          width:50%;
+        }
+
+
+    </style>
+
+
+    <!-- 자바스크립트 영역 -->
+    <script>
+      // function telCheck(){
+      //   var hp = '01012345678';
+      //   hp = hp.replace(/(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/,"$1-$2-$3");
+      // }
+
+
+          function inputCheck(){
+            let txt1 = $('#name').val();
+            let txt2 = $('#number').val();
+            let txt3 = $('#address').val();
+            let txt4 = $('#tel').val();
+
+
+            
+            if( txt1 == ''){
+              alert('이름을 입력해주세요!');
+              $('#name').focus()
+              return
+
+            }else if( txt2 == ''){
+              alert('수량을 입력해주세요!');
+              $('#number').focus()
+              return
+
+            }else if( txt3 == ''){
+              alert('주소를 입력해주세요!');
+              $('#address').focus()
+              return
+              
+            }else if( txt4 == ''){
+              alert('전화번호를 입력해주세요!');
+              $('#tel').focus()
+              return
+
+            // }else if( !isTel(tel) ){
+            //   alert('휴대폰번호 입력 형식이 틀립니다. \n 010-0000-0000으로 입력해주세요')
+            // }
+
+            }
+
+        
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <!-- 고정 레이아웃(반응형) 설정. wrap 삭제 -->
+    <div class ="container">
+
+      <!-- 상품 사진 영역 -->
+      <div>
+          <img class="img-product" src="https://www.eurail.com/content/dam/images/eurail/Italy%20OCP%20Promo%20Block.adaptive.767.1535627244182.jpg">
+      </div>
+
+      <!-- 상품 제목 영역 -->
+      <div>
+          <span class="title">스위스 배낭여행 5박 7일 패키지</span>
+          <span class= "sub-title">가격: 5,500,000원 / vat포함 </span>
+          <p>이 상품으로 말할 것 같으면 용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지 삼형제의 숨결이 고루 녹아 있는 먹으면 120세까지 살 수 있다는 이 상품으로 말할 것 같으면 용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의ㅣ 늑대와 아기 돼지...</p>
+      </div>
+
+      <!-- 주문하기 영역 -->
+      <div>
+          <span class="title">주문하기</span>
+          <br>
+          <br>
+
+          <!-- 인풋박스 영역. bootstrap 사용 -->
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함</span>
+              </div>
+              <input id='name' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">수량</span>
+              </div>
+                <select class="custom-select" id="number">
+                  <option selected value=""> -- 수량을 선택하세요 -- </option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+          </div>
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+              </div>
+              <input id='address' type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+
+          <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+              </div>
+              <input id='tel' type="tel" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+          </div>
+        </div>
+      
+      <!-- 주문하기 버튼 영역. bootstrap 사용 -->
+      <!-- display block 설정해서 풀어줌 -->
+
+      <div class="button1">
+        <button type="button" class="btn btn-primary btn-lg mybtn" display="block" onclick="inputCheck()">주문하기</button>
+
+    </div>
+
+
+      <!-- Optional JavaScript -->
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    
+
+  </div>
+
+</body>
+</html>

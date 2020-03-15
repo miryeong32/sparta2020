@@ -1,0 +1,41 @@
+* {
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+.mytitle {
+    color:#fff;
+    text-align: center;
+    background-image: url('http://www.forest.go.kr/newkfsweb/cmm/fms/FileDown.do?atchFileId=FILE_000000010008639&fileSn=0');
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+
+
+        /* display flex를 쓸 때엔 아래 네 줄이 항상 묶여 다닙니다. */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+    /* 이격 조정. 시계방향으로 위/우측/아래/좌측 */
+    /* margin은 부모요소와 자식요소 간의 간격(바깥), padding은 내 컨텐츠와 테두리의 간격(안쪽) */
+    .mytitle > h1 {
+    margin: 0 0 5px 0;
+    padding: 0px
+        }
+
+    .mytitle > h5 {
+    margin: 5px 0 0 0;
+    }
+
+    .wrap {
+        width: 300px;
+        /* 보통 자식 중에 가장 넓이값이 큰 값으로 설정함 */
+        margin: auto;
+        /* margin: 50px auto 50px auto; */
+    }
+
