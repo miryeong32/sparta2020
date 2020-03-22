@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let name, year, month, day, height, adult, age;
+        name = "홍길동", year = 2009, month = 7, day = 12, height = 153;
+
+        // let name = "이미령";
+        // let year = 1994;
+        // let month = 3;
+        // let day = 2;
+        // let height = 168;
+
+        // let adult = "덮어쓰기전";
+        // let age;
+        // console.log(adult);
+
+        let myDate = new Date();
+        console.log(myDate);
+        let currentYear = myDate.getFullYear();
+        console.log(currentYear);
+        let currentMonth = myDate.getMonth() + 1;
+        console.log(currentMonth);
+        let currentDate = myDate.getDate();
+        console.log(currentDate);
+
+        age = currentYear - year + 1;
+
+        if (age < 20) {
+            adult = "미성년자"
+        } else {
+            adult = "성년"
+        }
+
+
+        document.write("hi~ " + name + "님 당신은" + year + "년 " + month + "월 " + day + "일에 태어났습니다.<br> ");
+        document.write(currentYear + "년 " + currentMonth + "월 " + currentDate + "일 " + "현재 당신의 키는 " + height + "cm입니다.<br>");
+        document.write("당신은 현재 " + age + "살이며, 당신은 " + adult + "입니다.");
+    </script>
+
+
+
+</head>
+
+<body>
+    <!-- 홍길동님 당신은 2009년 7월 12일에 태어났습니다. <br>
+    2019년 현재 당신의 키는 153cm입니다. <br>
+    당신은 현재 10살이며, 당신은 남자입니다. -->
+
+</body>
+
+</html>
