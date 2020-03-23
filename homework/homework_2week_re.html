@@ -83,26 +83,7 @@
 
     <!-- 자바스크립트 영역 -->
     <script>
-        // 입력된 데이터를 하단의 테이블 영역에 추가하는 함수???
-        //function addInput(){
-        //    $.ajax({
-        //                type: "GET" //get방식? post 방식?
-        //                url: "/button1", //주소는 뭘로??
-        //                data: {},
-        //                success: function(response){
 
-        //                    let temp_html = '<tr>\
-        //                                                <td>' + txt1 + '</td>\
-        //                                                <td>' + txt2 + '</td>\
-        //                                                <td>' + txt3 + '</td>\
-        //                                                <td>' + txt4 + '</td>\
-        //                                            </tr>'
-
-        //                    $('#orders-box').append(temp_html)
-        //                }
-        //    })
-        //}    
-        
 
 
         // 휴대폰번호 형식 체크
@@ -140,16 +121,24 @@
                 return
 
             } else if (!isCellPhone(txt4)) {
-                alert('휴대폰번호 입력 형식이 틀립니다. \n010-0000-0000의 형식으로 입력해주세요')
+                alert('휴대폰번호 입력 형식이 틀립니다. \n010-xxxx-xxxx의 형식으로 입력해주세요')
                 return
 
             } 
-            //    else{
-            //    function(addInput);
-            //    alert('주문이 완료되었습니다!!!');
-            //    window.location.reload();
-            //   return
-            //}
+               else{
+                function addInput(){
+                           let temp_html = '<tr>\
+                                                       <td>' + txt1 + '</td>\
+                                                       <td>' + txt2 + '</td>\
+                                                       <td>' + txt3 + '</td>\
+                                                       <td>' + txt4 + '</td>\
+                                                   </tr>'
+                           $('#orders-box').append(temp_html);
+                       }
+                alert("주문이 완료되었습니다!!!");
+                window.location.reload();
+                return
+            }
         }
 
 
