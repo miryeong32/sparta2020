@@ -126,18 +126,15 @@
 
             } 
                else{
-                function addInput(){
-                           let temp_html = '<tr>\
-                                                       <td>' + txt1 + '</td>\
-                                                       <td>' + txt2 + '</td>\
-                                                       <td>' + txt3 + '</td>\
-                                                       <td>' + txt4 + '</td>\
-                                                   </tr>'
-                           $('#orders-box').append(temp_html);
-                       }
-                alert("주문이 완료되었습니다!!!");
-                window.location.reload();
-                return
+                    let temp_html = '<tr>\
+                                                <td>' + txt1 + '</td>\
+                                                <td>' + txt2 + '</td>\
+                                                <td>' + txt3 + '</td>\
+                                                <td>' + txt4 + '</td>\
+                                         </tr>'
+                    $('#orders-box').append(temp_html);
+                    alert("주문이 완료되었습니다!!!");
+                    return
             }
         }
 
