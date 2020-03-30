@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘도 펭수 내일도 펭수 - EBS 펭수샵</title>
+
+    <!-- JQuery를 import 합니다 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- 구글 웹 폰트 -->
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
+    <!-- 부트스트랩 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <!-- 스타일 CSS -->
+    <style>
+        /* 구글 웹 폰트 */
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+
+        .wrap{
+            width: 600px;
+            margin: auto;
+        }
+
+
+
+        .header-logo {
+            text-align: center;
+        }
+
+        .product-img {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .prd-name {
+            font-size: 30px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .prd-feature {
+            font-size: 15px;
+            font-weight: bold;
+            color: blue;
+        }
+
+        .prd-price {
+            font-size: 30px;
+            font-weight: bold;
+            color: red;
+        }
+
+        .pro-cont-title {
+            font-size: 25px;
+            font-weight: bold;
+            color: black;
+        }
+
+        .pro-check-title {
+            font-size: 25px;
+            font-weight: bold;
+            color: black;
+        }
+
+        /* 부트스트랩 버튼에 클래스명 지정하고, 중앙정렬 */
+        .button1 {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 부트스트랩 버튼에 클래스명 지정 후, 넓이 설정 */
+        .mybtn {
+            width: 50%;
+        }
+    </style>
+
+    <!-- 자바스크립트 영역 -->
+    <script>
+
+
+
+        // 휴대폰번호 형식 체크
+        function isCellPhone(p) {
+            var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})[-][0-9]{3,4}[-][0-9]{4}$/;
+            return regExp.test(p);
+        }
+
+        // input 입력여부 체크
+        function inputCheck() {
+            let input1 = $('#name').val();
+            let input2 = $('#number').val();
+            let input3 = $('#address').val();
+            let input4 = $('#tel').val();
+
+
+            if ( input1 == '') {
+                alert('이름을 입력해주세요!');
+                $('#name').focus()
+                return
+
+            } else if (input2 == '') {
+                alert('수량을 입력해주세요!');
+                $('#number').focus()
+                return
+
+            } else if (input3 == '') {
+                alert('주소를 입력해주세요!');
+                $('#address').focus()
+                return
+
+            } else if (input4 == '') {
+                alert('휴대폰번호를 입력해주세요!');
+                $('#tel').focus()
+                return
+
+            } else if (!isCellPhone(input4)) {
+                alert('휴대폰번호 입력 형식이 틀립니다. \n010-xxxx-xxxx의 형식으로 입력해주세요')
+                return
+
+            }
+
+            // DB 연동하기
+
+            // POST 방식
+            $.ajax({
+                type: "POST"
+                url: "/orders"
+                data: {name_give: input1, number_give: input2, address_give: input3, tel_give: input4},
+                success: function(response){
+                    if(response['result'] == 'success'){
+                        alert("주문이 완료되었습니다. 하단의 입력내용을 확인하세요!");
+                        $('#name').val('');
+                        $('#number').val('');
+                        $('#address').val('');
+                        $('#tel').val('');
+                        window.location.reload();
+                    }
+                }
+            })
+
+            $(document).ready(function(){
+                $('#orders-box').html('');
+                listing();
+            });
+
+            function listing(){
+                $.ajax({
+                    type: "GET",
+                    url: "/orders",
+                    data: {},
+                    success: function(response){
+                        if(response['result'] == 'success'){
+                            let orders = response['orders'];
+                            for (let i = 0; i < orders.length; i++){
+                                make_card(
+                                    orders[i]['name'],
+                                    orders[i]['number'],
+                                    orders[i]['address'],
+                                    orders[i]['tel']
+                                );
+                            }
+                        }else{
+                            alert('주문목록을 받아오지 못했습니다.');
+                        }
+                    }
+                })
+            }
+
+
+            // else {
+            //     let temp_html = '<tr>\
+            //                                     <td>' + input1 + '</td>\
+            //                                     <td>' + input2 + '</td>\
+            //                                     <td>' + input3 + '</td>\
+            //                                     <td>' + input4 + '</td>\
+            //                              </tr>'
+            //     $('#orders-box').append(temp_html);
+            //     alert("주문이 완료되었습니다!!!");
+            //     return
+            // }
+        }
+
+    
+
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+    <!-- 고정 레이아웃(반응형) 설정 = containe. 가운데정렬 = wrap -->
+    <div class="wrap">
+        <div class="containe">
+
+
+
+            <!-- 헤더 영역 -->
+            <div class="hd-bar">
+                <div class="header-logo">
+                    <img id="ebs-logo"
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/EBS_Logo.svg/1024px-EBS_Logo.svg.png"
+                        width="15%">
+                </div>
+            </div>
+
+            <!-- 이미지 영역 ::  캐러셀 사용-->
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img class="d-block w-100" src="http://image.yes24.com/goods/84434768/800x0" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block" style="color:black;">
+                            <h5>1번 아이템</h5>
+                            <p>장안의 화제, 펭수 다이어리!!!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="http://image.yes24.com/goods/89091393/800x0" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block" style="color:black;">
+                            <h5>2번 아이템</h5>
+                            <p>아이들을 위한, 펭아트토이북!!!</p>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <img class="d-block w-100" src="http://image.yes24.com/goods/85927912/800x0" alt="Third slide">
+                        <div class="carousel-caption d-none d-md-block" style="color:black;">
+                            <h5>3번 아이템</h5>
+                            <p>고3을 위한, 펭수특강!!!!</p>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+
+            <!--<div class="swipe-body">
+                <div class="product-img">
+                    <img src="http://image.yes24.com/goods/84434768/800x0">
+                </div>
+            </div> -->
+
+            <!-- 상품 요약 영역 -->
+            <div class="product-summary">
+                <span class="prd-name">오늘도 펭수 내일도 펭수(꽃눈 에디션)</span>
+                <span class="prd-feature">[ 양장 ]<br></span>
+                <span class="prd-price">
+                    <strong>15,300</strong>원
+                    <em>(10% 할인)</em>
+                </span>
+            </div>
+
+            <br>
+
+            <!-- 상품 상세 영역 -->
+            <div class="product-content">
+                <span class="pro-cont-title">책 소개</span>
+                <p class="pro-cont-text">
+                    펭-하! 140만 구독자의 마음을 사로잡은 자이언트 펭귄 펭수의 에세이 다이어리 『오늘도 펭수 내일도 펭수』가 출간되었다. 명실공히 국민펭귄이 된 자이언트 펭귄 펭수는 가는 길마다 화제를
+                    몰고 다닌다. 동년배의 속마음을 대변해주는 속 시원한 사이다 멘트를 서슴없이 날리고 “엣헴 엣헴 신이 나”라는 노래를 만들어 유행을 시키는가 하면, 팬들을 그냥 지나치는 법이 없는 애정
+                    가득한 팬서비스로도 유명하다. 이런 펭수의 매력을 더욱 가까이 느낄 수 있는 책 『오늘도 펭수 내일도 펭수』가 출간되어 펭수의 굿즈를 기다려 왔던 이들의 전폭적인 사랑을 받고 있다.
+                    『오늘도 펭수 내일도 펭수』는 예약 판매 즉시 주요 서점의 종합 베스트셀러 1위에 오르는 기록을 세우기도 했다. <br><br>
+
+                    『오늘도 펭수 내일도 펭수』에는 귀엽고 사랑스러운 펭수의 미공개 사진은 물론, 독자들의 마음을 감동시킨 따뜻한 멘트도 담겨 있다. 책꽂이에 꽂아두지 않고 매일 펼쳐볼 수 있도록 실용적인
+                    디자인을 더해 활용성을 높였다. 본문은 총 12장으로 구성되어 있어 1년(12개월) 다이어리로도 사용할 수 있으며, 펭수의 자작곡인 ‘엣헴송’은 물론 ‘모닝송’ ‘정성 타령송’ ‘웰컴투
+                    하와이’ ‘찹쌀떡 노동요’ 등 노랫말도 수록되어 있어 언제든 꺼내 읽고 따라 부를 수 있다. 펭수에게 깊이 펭며든 사람이라면 『오늘도 펭수 내일도 펭수』를 평생 소장할 것을 강력
+                    추천한다..
+                </p>
+
+            </div>
+
+            <!-- 주문하기 영역 -->
+            <div class="product-order">
+                <span class="pro-check-title">주문하기</span>
+
+                <!-- input 영역. bootstrap 사용 -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">주문자 성함</span>
+                    </div>
+                    <input id='name' type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">수량</span>
+                    </div>
+                    <select class="custom-select" id="number">
+                        <option selected value=""> -- 수량을 선택하세요 -- </option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+
+                <!-- 주소검색 버튼 추가 -->
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+                    </div>
+                    <input id='address' type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+                            onclick="alert('현재 검색을 지원하지 않습니다.')">주소검색</button>
+                    </div>
+                </div>
+
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+                    </div>
+                    <input id='tel' type="tel" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" placeholder="010-xxxx-xxxx 형식으로 입력하세요">
+                </div>
+
+                <br>
+
+
+                <!-- 주문하기 버튼. bootstrap 사용 -->
+                <!-- display block 설정해서 풀어줌 -->
+
+                <div class="button1">
+                    <button type="button" class="btn btn-primary btn-lg mybtn" onclick="inputCheck()">주문하기</button>
+                </div>
+
+                <br><br>
+
+                <!-- input 내용 리스트 영역 -->
+                <div class="orders">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">주문자 성함</th>
+                                <th scope="col">수량</th>
+                                <th scope="col">주소</th>
+                                <th scope="col">전화번호</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="orders-box">
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
