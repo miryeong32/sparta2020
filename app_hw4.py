@@ -11,7 +11,7 @@ db = client.dbhomework
 def home()
     return render_template('homework4.html')
 
-@app_hw4.rout('/orders', methods=['POST'])
+@app_hw4.route('/orders', methods=['POST'])
 def write_order():
     name_receive = request.form['name_give']
     number_receive = request.form['number_give']

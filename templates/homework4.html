@@ -149,34 +149,35 @@
                     }
                 }
             })
+        }
 
-            $(document).ready(function(){
-                $('#orders-box').html('');
-                listing();
-            });
+        $(document).ready(function(){
+            $('#orders-box').html('');
+            listing();
+        });
 
-            function listing(){
-                $.ajax({
-                    type: "GET",
-                    url: "/orders",
-                    data: {},
-                    success: function(response){
-                        if(response['result'] == 'success'){
-                            let orders = response['orders'];
-                            for (let i = 0; i < orders.length; i++){
-                                make_card(
-                                    orders[i]['name'],
-                                    orders[i]['number'],
-                                    orders[i]['address'],
-                                    orders[i]['tel']
-                                );
-                            }
-                        }else{
-                            alert('주문목록을 받아오지 못했습니다.');
+        function listing(){
+            $.ajax({
+                type: "GET",
+                url: "/orders",
+                data: {},
+                success: function(response){
+                    if(response['result'] == 'success'){
+                        let orders = response['orders'];
+                        for (let i = 0; i < orders.length; i++){
+                            make_card(
+                                orders[i]['name'],
+                                orders[i]['number'],
+                                orders[i]['address'],
+                                orders[i]['tel']
+                            );
                         }
+                    }else{
+                        alert('주문목록을 받아오지 못했습니다.');
                     }
-                })
-            }
+                }
+            })
+        }
 
 
             // else {
@@ -190,7 +191,7 @@
             //     alert("주문이 완료되었습니다!!!");
             //     return
             // }
-        }
+        
 
     
 
